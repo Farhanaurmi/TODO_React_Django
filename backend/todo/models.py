@@ -26,4 +26,4 @@ class SubscriptionClass(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     isPaid = models.BooleanField(default=False)
     paidAt = models.DateTimeField(auto_now_add=False, null=True, blank=True)
-    package = models.ForeignKey(PackageClass, on_delete=models.SET_NULL, null=True)
+    package = models.OneToOneField(PackageClass, on_delete=models.SET_NULL, null=True)

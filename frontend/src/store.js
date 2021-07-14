@@ -12,6 +12,9 @@ import { packageDetailsReducer,
     packageCreateReducer,
     packageUpdateReducer } from './reducers/packageReducer'
 
+import { subscribeCreateReducer, 
+    subscribeDetailsReducer, } from './reducers/subscribeReducer'
+
 const reducer = combineReducers ({
 
     userLogin: userLoginReducer,
@@ -24,13 +27,21 @@ const reducer = combineReducers ({
     packageDelete: packageDeleteReducer,
     packageCreate: packageCreateReducer,
     packageUpdate: packageUpdateReducer,
+
+    subscribeCreate: subscribeCreateReducer,
+    subscribeDetails: subscribeDetailsReducer,
+
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
         JSON.parse(localStorage.getItem('userInfo')) : null
 
+const subInfoFromStorage = localStorage.getItem('subInfo') ?
+        JSON.parse(localStorage.getItem('subInfo')) : []
+
 const initialState = {
-    userLogin: { userInfo: userInfoFromStorage }
+    userLogin: { userInfo: userInfoFromStorage },
+    subscribeDetails : { subs: subInfoFromStorage }
 }
 
 const middleware = [thunk] 
