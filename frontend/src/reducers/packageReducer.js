@@ -18,6 +18,10 @@ import {
     PACKAGE_UPDATE_FAIL,
     PACKAGE_UPDATE_RESET,
 
+    PACKAGE_ID_DETAILS_REQUEST,
+    PACKAGE_ID_DETAILS_SUCCESS,
+    PACKAGE_ID_DETAILS_FAIL,
+
  } from '../constants/packageConstants'
 
 
@@ -36,6 +40,23 @@ export const packageDetailsReducer = (state = { packages: [] }, action) => {
             return state
     }
 }
+
+export const packageIdDetailsReducer = (state = { pkg: {} }, action) => {
+    switch(action.type){
+        case PACKAGE_ID_DETAILS_REQUEST:
+            return {loading: true, ...state }
+
+        case PACKAGE_ID_DETAILS_SUCCESS:
+            return {loading: false, pkg: action.payload }
+
+        case PACKAGE_ID_DETAILS_FAIL:
+            return {loading: false, error: action.payload }
+
+        default:
+            return state
+    }
+}
+
 
 
 export const packageDeleteReducer = (state = { }, action) => {
@@ -61,7 +82,7 @@ export const packageCreateReducer = (state = { }, action) => {
             return {loading: true }
 
         case PACKAGE_CREATE_SUCCESS:
-            return {loading: false, success:true, package: action.payload }
+            return {loading: false, success:true, pkg: action.payload }
 
         case PACKAGE_CREATE_FAIL:
             return {loading: false, error: action.payload }
@@ -75,19 +96,19 @@ export const packageCreateReducer = (state = { }, action) => {
 }
 
 
-export const packageUpdateReducer = (state = { package: {} }, action) => {
+export const packageUpdateReducer = (state = { pkg: {} }, action) => {
     switch (action.type) {
         case PACKAGE_UPDATE_REQUEST:
             return { loading: true }
 
         case PACKAGE_UPDATE_SUCCESS:
-            return { loading: false, success: true, package: action.payload }
+            return { loading: false, success: true, pkg: action.payload }
 
         case PACKAGE_UPDATE_FAIL:
             return { loading: false, error: action.payload }
 
         case PACKAGE_UPDATE_RESET:
-            return { package: {} }
+            return { pkg: {} }
 
         default:
             return state

@@ -11,6 +11,7 @@ urlpatterns = [
 
     path('package', views.getPackage),
     path('package/create', views.createPackage, name="package-create"),
+    path('package/<str:pk>', views.getPackagebyId, name="package"),
     path('package/update/<str:pk>', views.updatePackage, name="update-package"),
     path('package/delete/<str:pk>', views.deletePackage, name="delete-package"),
 ]

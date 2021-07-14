@@ -76,9 +76,7 @@ def getUserProfile(request):
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
 def createPackage(request):
-    user = request.user
     package=PackageClass.objects.create(
-        user = user,
         title = 'Sample Title',
         price = 0,
         description = 'Sample Description'
@@ -96,7 +94,7 @@ def getPackage(request):
 @api_view(['DELETE'])
 @permission_classes([IsAdminUser])
 def deletePackage(request, pk):
-    package=PackageClass.objects.get(_id=pk)
+    package=PackageClass.objects.get(id=pk)
     package.delete()
     return Response('Package deleted')
 
@@ -104,10 +102,16 @@ def deletePackage(request, pk):
 @permission_classes([IsAdminUser])
 def updatePackage(request, pk):
     data = request.data
-    package=PackageClass.objects.get(_id=pk)
-    package.name = data['title']
+    package=PackageClass.objects.get(id=pk)
+    package.title = data['title']
     package.price = data['price']
     package.description = data['description']
     package.save()
-    serializer = PackageSerializer(Package, many=False)
+    serializer = PackageSerializer(package, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getPackagebyId(request, pk):
+    package=PackageClass.objects.get(id=pk)
+    serializer=PackageSerializer(package, many=False)
     return Response(serializer.data)

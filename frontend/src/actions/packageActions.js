@@ -18,6 +18,10 @@ import {
     PACKAGE_UPDATE_SUCCESS,
     PACKAGE_UPDATE_FAIL,
     PACKAGE_UPDATE_RESET,
+    
+    PACKAGE_ID_DETAILS_REQUEST,
+    PACKAGE_ID_DETAILS_SUCCESS,
+    PACKAGE_ID_DETAILS_FAIL,
 
  } from '../constants/packageConstants'
 
@@ -41,6 +45,27 @@ export const listPackageDetails = () => async (dispatch) => {
         })
     }
 }
+
+export const listPackageIdDetails = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: PACKAGE_ID_DETAILS_REQUEST })
+
+        const{data} = await axios.get(`/api/package/${id}`)
+
+        dispatch({ 
+            type: PACKAGE_ID_DETAILS_SUCCESS,
+            payload: data
+        })
+    } catch (error){
+        dispatch({
+            type: PACKAGE_ID_DETAILS_FAIL,
+            payload: error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+}
+
 
 
 export const deletePackage = (id) => async (dispatch, getState) => {

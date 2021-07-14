@@ -18,7 +18,7 @@ function SubscribeScreen({ history }) {
     const {loading:loadingDelete, error:errorDelete, success:successDelete} = packageDelete
 
     const packageCreate = useSelector(state => state.packageCreate)
-    const {loading:loadingCreate, error:errorCreate, success:successCreate, package:createdPackage} = packageCreate
+    const {loading:loadingCreate, error:errorCreate, success:successCreate, pkg:createdPackage} = packageCreate
 
     const userLogin= useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -31,7 +31,7 @@ function SubscribeScreen({ history }) {
         }
 
         if(successCreate){
-            history.push(`/admin/package/${createdPackage.id}/edit`)
+            history.push(`/package/${createdPackage.id}/edit`)
         }else{
             dispatch(listPackageDetails())
         }
@@ -52,12 +52,11 @@ function SubscribeScreen({ history }) {
             { error && (<Message variant='secondary'>{error}</Message>)}
             { userInfo.isAdmin? 
 
-            (<Row>
-                <Col className='text-right'>
-                    <Button className='my-3' onClick={createPackageHandler}>
+            (
+            <Row>
+                <Button className='my-3' onClick={createPackageHandler}>
                         <i className='fas fa-plus'></i> Create Package
                     </Button>
-                </Col>
                 { packages.map(p =>(
                     <Col key = {p._id} sm={12} md={6} lg={4} xl={3}>
                         <Package p={p}/>

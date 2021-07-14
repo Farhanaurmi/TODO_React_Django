@@ -7,6 +7,7 @@ import { userLoginReducer,
     userUpdateProfileReducer } from './reducers/userReducers'
 
 import { packageDetailsReducer,
+    packageIdDetailsReducer,
     packageDeleteReducer,
     packageCreateReducer,
     packageUpdateReducer } from './reducers/packageReducer'
@@ -19,6 +20,7 @@ const reducer = combineReducers ({
     userUpdateProfile: userUpdateProfileReducer,
 
     packageDetails: packageDetailsReducer,
+    packageIdDetails: packageIdDetailsReducer,
     packageDelete: packageDeleteReducer,
     packageCreate: packageCreateReducer,
     packageUpdate: packageUpdateReducer,
