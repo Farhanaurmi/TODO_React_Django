@@ -141,8 +141,37 @@ def createSubscribe(request):
         return Response({'detail':'No package'}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getSubscription(request):
     user = request.user
     subscription = user.subscriptionclass_set.all()
     serializer = SubscriptionSerializer(subscription, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def createTodo(request):
+    user= request.user
+    data= request.data
+    todo=TodoClass.objects.create(
+        user=user,
+        title = data['title'],
+        memo = data['memo']
+    )
+
+    return Response('create successfully')
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getTodo(request):
+    todo=TodoClass.objects.all()
+    serializer=TodoSerializer(todo, many=True)
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def deleteTodo(request, pk):
+    todo=TodoClass.objects.get(id=pk)
+    todo.delete()
+    return Response('todo deleted')

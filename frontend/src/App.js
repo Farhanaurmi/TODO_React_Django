@@ -5,6 +5,7 @@ import ProfileScreen from './Screens/ProfileScreen'
 import ProfileViewScreen from './Screens/ProfileViewScreen'
 import SubscribeScreen from './Screens/SubscribeScreen'
 import PackageEditScreen from './Screens/PackageEditScreen'
+import CreateTodoScreen from './Screens/CreateTodoScreen'
 import { Container,Row,Col } from 'react-bootstrap'
 import { BrowserRouter as Router,Route } from 'react-router-dom'
 import Sidebar from './Components/Sidebar'
@@ -27,6 +28,7 @@ function App() {
                 <Route path='/profile' component={ProfileViewScreen}/>
                 <Route path='/package/:id/edit' component={PackageEditScreen}/>
                 <Route path='/subscription' component={SubscribeScreen}/>
+                <Route path='/task' component={CreateTodoScreen}/>
               </Col>
             </Row>
           </Container>

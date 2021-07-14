@@ -51,3 +51,12 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         user = obj.user
         serializer = UserSerializer(user, many=False)
         return serializer.data
+
+
+
+class TodoSerializer(serializers.ModelSerializer):
+    createtime=serializers.ReadOnlyField()
+
+    class Meta:
+        model = TodoClass
+        fields= '__all__'

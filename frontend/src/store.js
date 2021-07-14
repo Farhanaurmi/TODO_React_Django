@@ -15,6 +15,10 @@ import { packageDetailsReducer,
 import { subscribeCreateReducer, 
     subscribeDetailsReducer, } from './reducers/subscribeReducer'
 
+import { todoCreateReducer,
+        todoDeleteReducer,
+        todoDetailsReducer } from './reducers/todoReducer'
+
 const reducer = combineReducers ({
 
     userLogin: userLoginReducer,
@@ -30,6 +34,10 @@ const reducer = combineReducers ({
 
     subscribeCreate: subscribeCreateReducer,
     subscribeDetails: subscribeDetailsReducer,
+
+    todoCreate: todoCreateReducer,
+    todoDelete: todoDeleteReducer,
+    todoDetails: todoDetailsReducer,
 
 })
 

@@ -17,4 +17,9 @@ urlpatterns = [
 
     path('subscription', views.getSubscription),
     path('subscribe/create', views.createSubscribe, name="subscribe-create"),
+
+    path('todo', views.getTodo),
+    path('todo/create', views.createTodo, name="todo-create"),
+    path('todo/delete/<str:pk>', views.deleteTodo, name="delete-todo"),
+
 ]
