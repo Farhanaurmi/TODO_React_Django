@@ -115,3 +115,34 @@ def getPackagebyId(request, pk):
     package=PackageClass.objects.get(id=pk)
     serializer=PackageSerializer(package, many=False)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def createSubscribe(request):
+    user = request.user
+    data = request.data
+    _id = data['id']
+    packages = PackageClass.objects.get(id=_id)
+        
+    try:
+        subscription = SubscriptionClass.objects.create(
+            user=user,
+            package=packages,
+            isPaid=True,
+            paidAt=datetime.now()
+
+        )
+
+
+        subscription.save()
+
+        return Response('successfully created')
+
+    except:
+        return Response({'detail':'No package'}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def getSubscription(request):
+    user = request.user
+    subscription = user.subscriptionclass_set.all()
+    serializer = SubscriptionSerializer(subscription, many=True)
+    return Response(serializer.data)

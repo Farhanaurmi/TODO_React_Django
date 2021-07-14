@@ -58,13 +58,13 @@ function SubscribeScreen({ history }) {
                         <i className='fas fa-plus'></i> Create Package
                     </Button>
                 { packages.map(p =>(
-                    <Col key = {p._id} sm={12} md={6} lg={4} xl={3}>
+                    <Col key = {p.id} sm={12} md={6} lg={4} xl={3}>
                         <Package p={p}/>
                     </Col>
                 ))}
             </Row>)
             :(<Row>
-                {packages.map(p =>(
+                { packages.map(p =>(
                 <Col key = {p.id} sm={12} md={6} lg={4} xl={3}>
                     <Package p={p}/>
                 </Col>

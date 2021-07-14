@@ -3,6 +3,7 @@ import { Button, Card } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { deletePackage } from '../actions/packageActions'
+import { createSubscribe } from '../actions/subscribeActions'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
@@ -16,10 +17,15 @@ function Package({ p }) {
     const {loading:loadingDelete, error:errorDelete, success:successDelete} = packageDelete
 
     const packageCreate = useSelector(state => state.packageCreate)
-    const {loading:loadingCreate, error:errorCreate, success:successCreate, package:createdPackage} = packageCreate
+    const {loading:loadingCreate, error:errorCreate, success:successCreate, pkg:createdPackage} = packageCreate
+
+    const userLogin= useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
 
     let history = useHistory()
-    const submitHandler =()=>{
+    
+    const submitHandler =(p)=>{
+        dispatch(createSubscribe(p))
         history.push('/task')
     }
 
@@ -29,9 +35,6 @@ function Package({ p }) {
         }
         
     }
-
-    const userLogin= useSelector(state => state.userLogin)
-    const {userInfo} = userLogin
 
     return (
         <div>{loadingDelete && <Loader/>}
@@ -60,7 +63,7 @@ function Package({ p }) {
                     <Card.Text as="div">
                         <Button
                         type='button'
-                        onClick= {submitHandler}
+                        onClick= {()=>submitHandler(p)}
                         className='btn btn-sm'
                         variant='danger'
                         className='my-2'

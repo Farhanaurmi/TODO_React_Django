@@ -32,3 +32,22 @@ class PackageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PackageClass
         fields= '__all__'
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+    packages = serializers.SerializerMethodField(read_only=True)
+    user = serializers.SerializerMethodField(read_only=True)
+    
+    class Meta:
+        model = SubscriptionClass
+        fields= '__all__'
+
+
+    def get_packages(self, obj):
+        packages = obj.package
+        serializer = PackageSerializer(packages, many=False)
+        return serializer.data
+
+    def get_user(self, obj):
+        user = obj.user
+        serializer = UserSerializer(user, many=False)
+        return serializer.data

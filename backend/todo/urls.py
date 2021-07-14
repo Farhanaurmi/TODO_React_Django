@@ -14,4 +14,7 @@ urlpatterns = [
     path('package/<str:pk>', views.getPackagebyId, name="package"),
     path('package/update/<str:pk>', views.updatePackage, name="update-package"),
     path('package/delete/<str:pk>', views.deletePackage, name="delete-package"),
+
+    path('subscription', views.getSubscription),
+    path('subscribe/create', views.createSubscribe, name="subscribe-create"),
 ]

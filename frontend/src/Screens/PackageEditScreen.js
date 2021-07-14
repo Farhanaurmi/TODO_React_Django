@@ -29,7 +29,7 @@ function PackageEditScreen({ match, history }) {
 
         if (successUpdate) {
             dispatch({ type: PACKAGE_UPDATE_RESET })
-            history.push('/subscription')
+            history.push('/')
         } else {
             if (!pkg.title || pkg.id !== Number(packageId)) {
                 dispatch(listPackageIdDetails(packageId))
