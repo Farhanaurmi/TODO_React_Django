@@ -165,7 +165,8 @@ def createTodo(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getTodo(request):
-    todo=TodoClass.objects.all()
+    user=request.user
+    todo= user.todoclass_set.all()
     serializer=TodoSerializer(todo, many=True)
     return Response(serializer.data)
 

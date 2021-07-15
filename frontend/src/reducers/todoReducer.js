@@ -8,12 +8,14 @@ import {
     TODO_DETAILS_REQUEST,
     TODO_DETAILS_SUCCESS,
     TODO_DETAILS_FAIL,
+    TODO_DETAILS_RESET,
 
     TODO_DELETE_REQUEST,
     TODO_DELETE_SUCCESS,
     TODO_DELETE_FAIL,
 
  } from '../constants/todoConstants'
+
 
  export const todoCreateReducer = (state = { }, action) => {
     switch(action.type){
@@ -45,6 +47,9 @@ export const todoDetailsReducer = (state = { todos: [] }, action) => {
 
         case TODO_DETAILS_FAIL:
             return {loading: false, error: action.payload }
+
+        case TODO_DETAILS_RESET:
+            return {}
 
         default:
             return state

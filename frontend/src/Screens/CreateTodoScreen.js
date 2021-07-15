@@ -22,15 +22,20 @@ function CreateTodoScreen({history}) {
     const todoCreate = useSelector(state => state.todoCreate)
     const { success, loading, error } = todoCreate
 
+    const subscribeDetails = useSelector(state => state.subscribeDetails)
+    const {subs} = subscribeDetails
+
     useEffect(() => {
         if (!userInfo){
             history.push('/login')
+        }else if(!subs.isPaid){
+            history.push('/subscription')
         }
         if(success){
             dispatch({type:TODO_CREATE_RESET})
             history.push('/')
         }
-    }, [dispatch,history, userInfo, success])
+    }, [dispatch,history, userInfo, success, subs])
 
     const submitHandler = (e) => {
         e.preventDefault()
