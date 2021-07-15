@@ -1,6 +1,7 @@
 import React from 'react'
-import { Nav } from 'react-bootstrap'
+import { Nav,Navbar } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import logoimg from './image/logo.png'
 import { logout } from '../actions/userActions'
 import { useHistory } from 'react-router-dom'
 
@@ -20,7 +21,10 @@ function Sidebar() {
             {userInfo && (
 
             <Nav className="col-md-12 d-none d-md-block bg-light sidebar">
-                <div className="sidebar-sticky"></div>
+                <div className="sidebar-sticky"></div>             
+            <Nav.Item className='mx-2'>
+                <img src={logoimg} width='30%'/>
+            </Nav.Item>
             <Nav.Item>
                 <Nav.Link href="/">Home</Nav.Link>
             </Nav.Item>
