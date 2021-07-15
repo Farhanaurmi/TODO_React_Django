@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav,Navbar } from 'react-bootstrap'
+import { Nav,Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import logoimg from './image/logo.png'
 import { logout } from '../actions/userActions'
@@ -25,21 +25,21 @@ function Sidebar() {
             <Nav.Item className='mx-2'>
                 <img src={logoimg} width='30%'/>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item >
                 <Nav.Link href="/">Home</Nav.Link>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item >
                 <Nav.Link href="/profile">Profile</Nav.Link>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item >
                 <Nav.Link href="/task">Task</Nav.Link>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item >
                 <Nav.Link href="/subscription">Subscription</Nav.Link>
             </Nav.Item>
            
             <Nav.Item>
-                <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
+                <Button type='button' className='btn btn-block my-2 mx-3' onClick={logoutHandler}>Logout</Button>
             </Nav.Item>
             </Nav>
             )}
