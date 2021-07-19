@@ -15,7 +15,7 @@ function PackageEditScreen({ match, history }) {
 
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState(0)
-    const [description, setDescription] = useState('')
+    const [limit, setLimit] = useState(0)
     
     const dispatch = useDispatch()
 
@@ -36,7 +36,7 @@ function PackageEditScreen({ match, history }) {
             } else {
                 setTitle(pkg.title)
                 setPrice(pkg.price)
-                setDescription(pkg.description)
+                setLimit(pkg.limit)
 
             }
         }
@@ -49,7 +49,7 @@ function PackageEditScreen({ match, history }) {
             id: packageId,
             title,
             price,
-            description
+            limit
         }))
     }
 
@@ -92,14 +92,14 @@ function PackageEditScreen({ match, history }) {
                                 </Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='description'>
-                                <Form.Label>Description</Form.Label>
+                            <Form.Group controlId='limit'>
+                                <Form.Label>Total task</Form.Label>
                                 <Form.Control
 
-                                    type='text'
-                                    placeholder='Enter description'
-                                    value={description}
-                                    onChange={(e) => setDescription(e.target.value)}
+                                    type='number'
+                                    placeholder='Enter number'
+                                    value={limit}
+                                    onChange={(e) => setLimit(e.target.value)}
                                 >
                                 </Form.Control>
                             </Form.Group>

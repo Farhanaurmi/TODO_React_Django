@@ -36,6 +36,8 @@ function HomeScreen({history}) {
     return (
         <div>
             <h2>All Task</h2>
+            {!todos? <Loader/>
+            : (
                     <Table striped bordered hover responsive className='table-sm'>
                     <thead>
                         <tr>
@@ -64,6 +66,8 @@ function HomeScreen({history}) {
                         ))}
                     </tbody>
                     </Table>          
+            )
+            }
         </div>
     )
 }

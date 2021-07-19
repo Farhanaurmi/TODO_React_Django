@@ -14,7 +14,7 @@ class TodoClass(models.Model):
 
 class PackageClass(models.Model):
     title = models.CharField(max_length=30)
-    description = models.CharField(max_length=100)
+    limit = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
@@ -23,5 +23,5 @@ class PackageClass(models.Model):
 class SubscriptionClass(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     isPaid = models.BooleanField(default=False)
-    paidAt = models.DateTimeField(auto_now_add=False, null=True, blank=True)
-    package = models.OneToOneField(PackageClass, on_delete=models.SET_NULL, null=True)
+    paidAt = models.DateTimeField(null=True, blank=True)
+    package = models.ForeignKey(PackageClass, on_delete=models.SET_NULL, null=True)

@@ -52,7 +52,7 @@ function Package({ p }) {
 
                 <Card.Text as="div" >
                 <div className="my-3">
-                {p.description}
+                {p.limit}
                 </div>
                 </Card.Text>
                 <Card.Text as="h3" >

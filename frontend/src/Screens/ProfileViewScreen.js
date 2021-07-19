@@ -65,6 +65,7 @@ function ProfileViewScreen({history}) {
                             <th>PAID</th>
                             <th>PACKAGE TITLE</th>
                             <th>PACKAGE PRICE</th>
+                            <th>TASK LIMIT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,6 +78,7 @@ function ProfileViewScreen({history}) {
                                 }</td>
                                 <td>{sub.packages.title}</td>
                                 <td>{sub.packages.price}</td>
+                                <td>{sub.packages.limit}</td>
                             </tr>
                         ))}
                     </tbody>

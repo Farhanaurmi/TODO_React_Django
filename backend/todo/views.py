@@ -10,7 +10,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
-
+from django.core.paginator import Paginator
 from .models import *
 
 
@@ -79,7 +79,7 @@ def createPackage(request):
     package=PackageClass.objects.create(
         title = 'Sample Title',
         price = 0,
-        description = 'Sample Description'
+        limit = 0
     )
     serializer=PackageSerializer(package, many=False)
     return Response(serializer.data)
@@ -105,7 +105,7 @@ def updatePackage(request, pk):
     package=PackageClass.objects.get(id=pk)
     package.title = data['title']
     package.price = data['price']
-    package.description = data['description']
+    package.limit = data['limit']
     package.save()
     serializer = PackageSerializer(package, many=False)
     return Response(serializer.data)

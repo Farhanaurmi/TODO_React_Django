@@ -28,8 +28,12 @@ function CreateTodoScreen({history}) {
     useEffect(() => {
         if (!userInfo){
             history.push('/login')
-        }else if(!subs.isPaid){
-            history.push('/subscription')
+        }else{
+            subs.map(e => {
+                if(!e.isPaid){
+                    history.push('/subscription')
+                }
+            });
         }
         if(success){
             dispatch({type:TODO_CREATE_RESET})
