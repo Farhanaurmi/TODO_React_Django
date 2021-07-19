@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+
 import { Form, Button,Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-import FormContainer from '../Components/FormContainer'
+
 import { createTodo } from '../actions/todoActions'
 import { TODO_CREATE_RESET } from '../constants/todoConstants'
 import { listSubscribeDetails } from '../actions/subscribeActions'
+
 
 
 
@@ -25,19 +26,26 @@ function CreateTodoScreen({history}) {
     const { success, loading, error } = todoCreate
 
     const subscribeDetails = useSelector(state => state.subscribeDetails)
-    const {subs} = subscribeDetails
+    const {subs, success:successD, loading:loadingD} = subscribeDetails
+
 
     useEffect(() => {
         
+
         if (!userInfo){
             history.push('/login')
         }else{
-                dispatch(listSubscribeDetails())
-                subs.map(e => {
-                if(!e.isPaid){
-                    history.push('/subscription')
+                
+                if(!successD && !loadingD){
+                    dispatch(listSubscribeDetails())
                 }
-            });
+                
+                if(subs==='empty'){
+                    history.push('/subscription')
+                    
+                }
+
+            
         }
         if(success){
             dispatch({type:TODO_CREATE_RESET})

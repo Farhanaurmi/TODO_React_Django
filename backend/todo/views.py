@@ -146,7 +146,12 @@ def getSubscription(request):
     user = request.user
     subscription = user.subscriptionclass_set.all()
     serializer = SubscriptionSerializer(subscription, many=True)
-    return Response(serializer.data)
+    if serializer.data:
+        return Response(serializer.data)
+    else:
+        return Response('empty')
+
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

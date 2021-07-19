@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -7,7 +7,8 @@ import { createSubscribe } from '../actions/subscribeActions'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-
+import { listSubscribeDetails } from '../actions/subscribeActions'
+import { SUBSCRIBE_DETAILS_RESET } from '../constants/subscribeConstants'
 
 function Package({ p }) {
 
@@ -22,10 +23,16 @@ function Package({ p }) {
     const userLogin= useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
+    const subscribeDetails = useSelector(state => state.subscribeDetails)
+    const {subs, success:successDetails, loading:loadingDetails} = subscribeDetails
+
+
     let history = useHistory()
     
     const submitHandler =(p)=>{
+        dispatch({ type:SUBSCRIBE_DETAILS_RESET})
         dispatch(createSubscribe(p))
+        dispatch(listSubscribeDetails())
         history.push('/task')
     }
 

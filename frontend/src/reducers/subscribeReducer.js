@@ -38,7 +38,7 @@ export const subscribeDetailsReducer = (state = { subs: [] }, action) => {
             return {loading: true, subs: [] }
 
         case SUBSCRIBE_DETAILS_SUCCESS:
-            return {loading: false, subs: action.payload }
+            return {loading: false, subs: action.payload, success:true }
 
         case SUBSCRIBE_DETAILS_FAIL:
             return {loading: false, error: action.payload }

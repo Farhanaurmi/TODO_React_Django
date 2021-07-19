@@ -6,6 +6,7 @@ import Message from '../Components/Message'
 import { useDispatch, useSelector } from 'react-redux'
 import { listPackageDetails, createPackage } from '../actions/packageActions'
 import { PACKAGE_CREATE_RESET } from '../constants/packageConstants'
+import { listSubscribeDetails } from '../actions/subscribeActions'
 
 function SubscribeScreen({ history }) {
 
@@ -31,6 +32,7 @@ function SubscribeScreen({ history }) {
         }
 
         if(successCreate){
+            
             history.push(`/package/${createdPackage.id}/edit`)
         }else{
             dispatch(listPackageDetails())
@@ -41,6 +43,7 @@ function SubscribeScreen({ history }) {
 
     const createPackageHandler = () => {
         dispatch(createPackage())
+        
     }
 
     
