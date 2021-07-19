@@ -75,7 +75,6 @@ export const listSubscribeDetails = () => async (dispatch, getState) => {
             type: SUBSCRIBE_DETAILS_SUCCESS,
             payload: data
         })
-        localStorage.setItem('subInfo', JSON.stringify(data))
 
     } catch (error){
         dispatch({

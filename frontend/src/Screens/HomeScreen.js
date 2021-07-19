@@ -5,7 +5,6 @@ import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import { listTodoDetails,deleteTodo } from '../actions/todoActions'
 
-
 function HomeScreen({history}) {
 
     const dispatch = useDispatch()
@@ -24,6 +23,7 @@ function HomeScreen({history}) {
             history.push('/login')
         }else{
             dispatch(listTodoDetails())
+            
         }
     }, [history, userInfo, success])
 

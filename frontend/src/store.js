@@ -44,12 +44,9 @@ const reducer = combineReducers ({
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
         JSON.parse(localStorage.getItem('userInfo')) : null
 
-const subInfoFromStorage = localStorage.getItem('subInfo') ?
-        JSON.parse(localStorage.getItem('subInfo')) : []
 
 const initialState = {
-    userLogin: { userInfo: userInfoFromStorage },
-    subscribeDetails : { subs: subInfoFromStorage }
+    userLogin: { userInfo: userInfoFromStorage }
 }
 
 const middleware = [thunk] 

@@ -7,6 +7,8 @@ import Message from '../Components/Message'
 import FormContainer from '../Components/FormContainer'
 import { createTodo } from '../actions/todoActions'
 import { TODO_CREATE_RESET } from '../constants/todoConstants'
+import { listSubscribeDetails } from '../actions/subscribeActions'
+
 
 
 function CreateTodoScreen({history}) {
@@ -26,10 +28,12 @@ function CreateTodoScreen({history}) {
     const {subs} = subscribeDetails
 
     useEffect(() => {
+        
         if (!userInfo){
             history.push('/login')
         }else{
-            subs.map(e => {
+                dispatch(listSubscribeDetails())
+                subs.map(e => {
                 if(!e.isPaid){
                     history.push('/subscription')
                 }

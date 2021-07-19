@@ -8,6 +8,7 @@ import {
     SUBSCRIBE_DETAILS_REQUEST,
     SUBSCRIBE_DETAILS_SUCCESS,
     SUBSCRIBE_DETAILS_FAIL,
+    SUBSCRIBE_DETAILS_RESET
 
  } from '../constants/subscribeConstants'
 
@@ -41,6 +42,9 @@ export const subscribeDetailsReducer = (state = { subs: [] }, action) => {
 
         case SUBSCRIBE_DETAILS_FAIL:
             return {loading: false, error: action.payload }
+
+        case SUBSCRIBE_DETAILS_RESET:
+            return {}
 
         default:
             return state
